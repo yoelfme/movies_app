@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'movies.apps.MoviesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'movies_app',
         'USER': 'postgres',
-        'PASSWORD': 'movies_app_password',
+        'PASSWORD': 'Postgre',
         'HOST': 'localhost'
     }
 }
