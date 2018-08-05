@@ -6,6 +6,8 @@ class Category(models.Model):
     name = models.CharField(max_length=25, null=True)
     class Meta:
         db_table = 'categories'
+    def __str__(self):
+        return self.name
 
 class Movie(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -19,6 +21,18 @@ class Movie(models.Model):
     type = models.CharField(max_length=200, default="FREE")
     class Meta:
         db_table = 'movies'
+    def __str__(self):
+        return '%s | %s | %s | %s | %s | %s | %s | %s | %s' % (
+            self.category,
+            self.name,
+            self.video_url,
+            self.description,
+            self.image,
+            self.duration,
+            self.year,
+            self.clasification,
+            self.type
+        )
 
 class User(models.Model):
     name = models.CharField(max_length=50, null=True)
@@ -32,6 +46,13 @@ class User(models.Model):
     password = models.CharField(max_length=25, null=True)
     class Meta:
         db_table = 'users'
+    def __str__(self):
+        return '%s | %s | %s | %s ' % (
+            self.name,
+            self.last_name,
+            self.email,
+            self.type
+        )
 
 class Subscription(models.Model):
     day = models.CharField(max_length=25, null=True)
@@ -41,3 +62,11 @@ class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         db_table = 'subscriptions'
+    def __str__(self):
+        return '%s | %s | %s | %s | %s' % (
+            self.day,
+            self.amount,
+            self.card_id_number,
+            self.expiration_date,
+            self.user
+        )
