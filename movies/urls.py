@@ -1,13 +1,20 @@
-from django.conf.urls import url, include
-from rest_framework import routers
-from movies import views
+# In views.py
+def users_list(request):
+    pass
 
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
+def movies_list(request):
+    pass
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+def users_detail(request, pk):
+    pass
+
+# in urls.py
+from django.urls import path
+from .views import users_list, movies_list
+from django.contrib import admin
+
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path("admin/", admin.site.urls),
+    path("users/", users_list, name="users_list"),
+    path("movies/", movies_list, name="movies_list"),
 ]
