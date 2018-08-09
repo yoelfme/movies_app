@@ -5,9 +5,6 @@ def users_list(request):
 def movies_list(request):
     pass
 
-def users_detail(request, pk):
-    pass
-
 # in urls.py
 from django.urls import path
 from .views import users_list, movies_list
