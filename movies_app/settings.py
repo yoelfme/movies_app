@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'movies_app',
         'USER': 'postgres',
-        'PASSWORD': 'movies_app_password',
+        'PASSWORD': os.environ.get('POSTGRES_DB_PASSWORD'),
         'HOST': 'localhost'
     }
 }
