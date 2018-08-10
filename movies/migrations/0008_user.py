@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50, null=True)),
                 ('last_name', models.CharField(max_length=50, null=True)),
                 ('email', models.EmailField(db_index=True, max_length=254, unique=True)),
-                ('type', models.CharField(default='BASIC', max_length=200)),
+                ('type', models.CharField(default='FREE', max_length=200)),
                 ('password', models.CharField(max_length=25, null=True)),
             ],
             options={

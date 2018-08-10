@@ -1,11 +1,18 @@
 from django.db import models
 
 # Create your models here.
+FREE = 'FREE'
+PREMIUM = 'PREMIUM'
+types = (
+    (FREE, FREE),
+    (PREMIUM, PREMIUM)
+)
 
 class Category(models.Model):
     name = models.CharField(max_length=25, null=True)
     class Meta:
         db_table = 'categories'
+
     def __str__(self):
         return self.name
 
@@ -18,9 +25,13 @@ class Movie(models.Model):
     duration = models.CharField(max_length=25, null=True)
     year = models.CharField(max_length=10, null=True)
     clasification = models.CharField(max_length=25, null=True)
-    type = models.CharField(max_length=200, default="FREE")
+    type = models.CharField(max_length=200,
+        choices=types,
+        default=FREE)
+
     class Meta:
         db_table = 'movies'
+
     def __str__(self):
         return '%s | %s | %s | %s | %s | %s | %s | %s | %s' % (
             self.category,
@@ -41,8 +52,11 @@ class User(models.Model):
         max_length=254,
         unique=True,
         db_index=True
-    ) 
-    type = models.CharField(max_length=200, default="BASIC")
+    )
+    type = models.CharField(
+        max_length=200,
+        choices=types,
+        default=FREE)
     password = models.CharField(max_length=25, null=True)
     class Meta:
         db_table = 'users'

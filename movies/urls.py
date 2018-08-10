@@ -1,17 +1,12 @@
-# In views.py
-def users_list(request):
-    pass
-
-def movies_list(request):
-    pass
-
-# in urls.py
-from django.urls import path
-from .views import users_list, movies_list
-from django.contrib import admin
+# from django.urls import path
+from django.conf.urls import url
+from movies.views import UserList, CreateSubscription, MoviesList
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("users/", users_list, name="users_list"),
-    path("movies/", movies_list, name="movies_list"),
+    url(r'^movies/', MoviesList.as_view()),
+    url(r'^users/$', UserList.as_view()),
+    url(r'^users/(?P<user_id>[0-9]+)/subscription/$', CreateSubscription.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
