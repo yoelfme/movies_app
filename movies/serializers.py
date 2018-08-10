@@ -3,11 +3,17 @@ from movies.models import User, Category, Movie
 
 class UserSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(required=False, allow_blank=True, max_length=100)
-    last_name = serializers.CharField(required=False, allow_blank=True, max_length=100)
-    email = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    name = serializers.CharField(required=True, allow_blank=True, max_length=100)
+    last_name = serializers.CharField(required=True, allow_blank=True, max_length=100)
+    email = serializers.EmailField(required=True, max_length=100)
     type = serializers.CharField(required=False, allow_blank=True, max_length=100)
-    password = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    password = serializers.CharField(required=True, max_length=100)
+
+    class Meta:
+        model = User
+
+    def create(self, validated_data):
+        return User.objects.create(**validated_data)
 
 class CategorySerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
